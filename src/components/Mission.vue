@@ -4,7 +4,9 @@ import "bootstrap"
 import Player from './Player.vue'
 import Actions from "./Actions.vue"
 import OnGoingMission from "./OnGoingMission.vue"
+import DatabaseService from "../scripts/databaseService.ts";
 
+const databaseService = new DatabaseService();
 
 </script>
 
@@ -18,6 +20,8 @@ import OnGoingMission from "./OnGoingMission.vue"
         <div class="row justify-content-around p-3">
             <Player class="col-6"/>
             <Player class="col-6"/>
+        </div>
+        <div>
         </div>
     </div>
 </template>
