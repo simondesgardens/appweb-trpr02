@@ -3,23 +3,15 @@
 layout: home
 
 hero:
-  name: "TP2 revue de code"
-  text: "Revue de code pour le tp02"
-  tagline: My great project tagline
+  name: "Tp02"
+  text: "Revue de code documentée"
+  tagline: Par Ilann Brodl et Simon Desjardins
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: Ilann Brodl
+      link: /ilann-brodl
+    - theme: brand
+      text: Simon Dejardins
+      link: /simon-desjardins
 ---
 
