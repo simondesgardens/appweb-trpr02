@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import DatabaseService from "../scripts/databaseService.ts"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
 const router = useRouter()
+const databaseService = new DatabaseService();
+
 let playerName = ref('default')
 let playerShip = ref('default')
 
+const ships = ref([]);
+
+onMounted(async () => {
+  ships.value = await databaseService.getShips();
+  console.log(ships.value);
+});
 
 </script>
 
@@ -24,8 +33,7 @@ let playerShip = ref('default')
         <div class="mb-3">
           <label for="select" class="form-label">Votre vaisseau:</label>
           <select id="select" class="form-select" v-model="playerShip">
-            <option default>Test</option>
-            <option>Test2</option>
+            <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
         <router-link :to="{ name: 'Mission', params: { name: playerName, ship: playerShip } }" tag="button" class="btn btn-primary w-100">Débuter la partie</router-link>
