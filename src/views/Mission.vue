@@ -2,9 +2,9 @@
 import { useRouter, onBeforeRouteLeave  } from 'vue-router'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
-import Player from './Player.vue'
-import Actions from "./Actions.vue"
-import OnGoingMission from "./OnGoingMission.vue"
+import Player from '../components/Player.vue'
+import Actions from "../components/Actions.vue"
+import OnGoingMission from "../components/OnGoingMission.vue"
 import DatabaseService from "../scripts/databaseService.ts";
 
 const databaseService = new DatabaseService();
