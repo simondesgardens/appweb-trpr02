@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter, onBeforeRouteLeave  } from 'vue-router'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import Player from './Player.vue'
@@ -7,6 +8,8 @@ import OnGoingMission from "./OnGoingMission.vue"
 import DatabaseService from "../scripts/databaseService.ts";
 
 const databaseService = new DatabaseService();
+
+const router = useRouter()
 
 </script>
 

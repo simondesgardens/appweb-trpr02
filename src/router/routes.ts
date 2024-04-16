@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import MainMenu from '../App.vue'
+import MainMenu from '../components/MainMenu.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -12,12 +12,12 @@ const routes: Array<RouteRecordRaw> = [
     {
       path: '/score',
       name: 'Score',
-      component: () => import('../components/Score.vue')
+      component: () => import('../views/Score.vue')
     },
     {
       path: '/mission/:name,:ship',
       name: 'Mission',
-      component: () => import('../components/Mission.vue'),
+      component: () => import('../views/Mission.vue'),
       props: true
     },
     {
