@@ -1,6 +1,6 @@
 import axios from 'axios' 
 const RANKING_PATH = '/ranking'
-const SHIPS_PATH = '/artists'
+const SHIPS_PATH = '/ships'
 const CHARACTERS_PATH = '/characters'
 
 export default class DatabaseService {

@@ -26,7 +26,4 @@ import "bootstrap"
   </template>
 
 <style scoped>
-.margin-left {
-  margin-left: 250px !important;
-}
 </style>
