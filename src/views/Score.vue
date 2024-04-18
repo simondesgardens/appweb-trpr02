@@ -10,11 +10,11 @@ const scores = ref([]);
 
 onMounted(async () => {
     scores.value = await databaseService.getRanking();
-    scores.value = putScoresInOrder(scores.value);
+    putScoresInOrder(scores.value);
 });
 
 function putScoresInOrder(scores: any) {
-    return scores.sort((a: any, b: any) => b.score - a.score);
+    scores.value = scores.sort((a: any, b: any) => b.score - a.score);
 }
 
 </script>
