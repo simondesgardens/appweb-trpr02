@@ -28,11 +28,11 @@ onMounted(async () => {
       <fieldset>
         <div class="mb-3">
           <label for="textInput" class="form-label">Votre nom:</label>
-          <input type="text" id="textInput" class="form-control" v-model="playerName">
+          <input type="text" id="textInput" class="form-control" v-model="playerName" required>
         </div>
         <div class="mb-3">
           <label for="select" class="form-label">Votre vaisseau:</label>
-          <select id="select" class="form-select" v-model="playerShip">
+          <select id="select" class="form-select" v-model="playerShip" required>
             <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
