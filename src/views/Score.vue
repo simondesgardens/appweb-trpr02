@@ -22,7 +22,7 @@ function putScoresInOrder(scores: any) {
 <template>
     <ul class="list-group list-group-flush">
         <li class="list-group-item title text-center fw-bold">Pointage</li>
-        <li class="list-group-item" v-for="score in scores" :key="score.id" :value="score.name">{{ score.name }} - {{ score.score }} CG</li>
+        <li class="list-group-item" v-for="score in scores" :key="score.id">{{ score.name }} - {{ score.score }} CG</li>
     </ul>
 </template>
 
