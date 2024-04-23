@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { Modal } from 'bootstrap'
 import DatabaseService from "../scripts/databaseService.ts"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
+const props = defineProps({
+  trigger: Number,
+  playerName: String,
+  playerShip: String,
+  playButton: String
+})
+
 const router = useRouter()
 const databaseService = new DatabaseService();
+const emit = defineEmits(['startGame']);
+const modal = ref<Modal | null>(null)
 
 let playerName = ref('default')
 let playerShip = ref('default')
@@ -17,6 +27,16 @@ onMounted(async () => {
   ships.value = await databaseService.getShips();
   console.log(ships.value);
 });
+
+watch(() => props.trigger, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    modal.value?.show()
+  }
+})
+
+const confirm = () => {
+  emit('startGame')
+}
 
 </script>
 
@@ -36,7 +56,7 @@ onMounted(async () => {
             <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
-        <router-link :to="{ name: 'Mission', params: { name: playerName, ship: playerShip } }" tag="button" class="btn btn-primary w-100">Débuter la partie</router-link>
+        <router-link :to="{ name: 'Mission', params: { name: playerName, ship: playerShip } }" name="play" tag="button" class="btn btn-primary w-100" @click="confirm">Débuter la partie</router-link>
       </fieldset>
     </form>
   </div>
