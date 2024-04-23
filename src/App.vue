@@ -3,6 +3,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import NavigationBar from "./components/NavigationBar.vue";
+import { ref } from 'vue'
 
 </script>
 

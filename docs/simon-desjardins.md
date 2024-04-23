@@ -2,7 +2,7 @@
 
 Revue de code pour le TP02 de Ilann Brodl pour le cours d'application web.
 
-## Commentaires générals
+## Semaine 1
 
 ### NavigationBar.vue
 
@@ -36,4 +36,23 @@ Mettre à jour les commentaires pour qu'ils soient pertinents:
       name: 'NotFound',
       component: () => import('../views/NotFoundView.vue')
     }
+```
+
+## Semaine 2
+
+Faire des constantes au lieu des variables et changer les chaînes de caractères par défaut par des chaînes significatives.
+```js
+let playerName = ref('default')
+let playerShip = ref('default')
+```
+
+Ne pas oublier de mettre le type de variable qui va dans le tableau.
+Dans le MaineMenu.vue:
+```js
+const ships = ref([]);
+```
+
+Dans le Score.vue:
+```js
+const scores = ref([]);
 ```

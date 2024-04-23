@@ -7,7 +7,7 @@ content-type: application/json
 
 {
     "name": "Murielle Ellemure",
-    "credit": 600
+    "score": 600
 }
 
 ### Voir tous les vaisseaux
