@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter, onBeforeRouteLeave } from 'vue-router'
+import { useRouter, onBeforeRouteLeave, RouterLink } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import DatabaseService from "../scripts/databaseService.ts"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -8,15 +8,19 @@ import "bootstrap"
 const router = useRouter()
 const databaseService = new DatabaseService();
 
-let playerName = ref('default')
-let playerShip = ref('default')
+let playerName = ref('')
+let playerShip = ref('')
 
 const ships = ref([]);
 
 onMounted(async () => {
   ships.value = await databaseService.getShips();
-  console.log(ships.value);
 });
+
+function playGame() {
+  router.push({ name: 'Mission', params: { name: playerName.value, player: playerName.value, ship: playerShip.value }});
+}
+
 
 </script>
 
@@ -36,7 +40,7 @@ onMounted(async () => {
             <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
-        <router-link :to="{ name: 'Mission', params: { name: playerName, ship: playerShip } }" tag="button" class="btn btn-primary w-100">Débuter la partie</router-link>
+        <button type="button" class="btn btn-primary w-100" @click="playGame">Débuter la partie</button>
       </fieldset>
     </form>
   </div>

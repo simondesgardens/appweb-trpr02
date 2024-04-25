@@ -162,16 +162,16 @@ function closeEnemyPopup() {
     chooseRandomEnemy()
 }
 
-function closePlayerPopup() {
+async function closePlayerPopup() {
     playerDied.value = false
     player.value.credit -= 100
-    databaseService.postScore(player.value.name, player.value.credit)
+    await databaseService.postScore(player.value.name, player.value.credit)
     router.push('/score')
 }
 
-function closeWinPopup() {
+async function closeWinPopup() {
     playerWon.value = false
-    databaseService.postScore(player.value.name, player.value.credit)
+    await databaseService.postScore(player.value.name, player.value.credit)
     router.replace('/score')
 }
 
