@@ -2,11 +2,13 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import DatabaseService from "../scripts/databaseService.ts"
+import Popup from "../components/Popup.vue";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
 const router = useRouter()
 const databaseService = new DatabaseService();
+const playerValueIsInvalid = ref(false)
 
 let playerName = ref('')
 let playerShip = ref('')
@@ -18,9 +20,16 @@ onMounted(async () => {
 });
 
 function playGame() {
-  router.push({ name: 'Mission', params: { name: playerName.value, player: playerName.value, ship: playerShip.value }});
+  if (playerName.value == '' || playerShip.value == '') {
+    playerValueIsInvalid.value = true
+  } else {
+   router.push({ name: 'Mission', params: { name: playerName.value, player: playerName.value, ship: playerShip.value }});
+  }
 }
 
+async function closeWinPopup() {
+  playerValueIsInvalid.value = false
+}
 
 </script>
 
@@ -44,6 +53,13 @@ function playGame() {
       </fieldset>
     </form>
   </div>
+
+  <Popup v-if="playerValueIsInvalid" :button-message="'Accepter'" @close-popup="closeWinPopup">
+    <h2>Manque de renseignement !</h2>
+            <p>
+                Veuillez entrer votre nom et choisir un vaisseau.
+            </p>
+  </Popup>
 </template>
 
 <style scoped>
