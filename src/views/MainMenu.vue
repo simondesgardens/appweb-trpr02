@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter, onBeforeRouteLeave, RouterLink } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import DatabaseService from "../scripts/databaseService.ts"
 import "bootstrap/dist/css/bootstrap.min.css"

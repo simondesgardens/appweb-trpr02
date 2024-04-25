@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import MainMenu from '../components/MainMenu.vue'
+import MainMenu from '../views/MainMenu.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
