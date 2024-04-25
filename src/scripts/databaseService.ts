@@ -32,6 +32,8 @@ export default class DatabaseService {
 
     const id: number = (await axios.get(this.API_URL + RANKING_PATH + '?_page=1&_limit=1')).headers['x-total-count']
 
+console.log(id)
+
     const data = {'id': id, 'name': name, 'score': score}
     const response: AxiosResponse = await axios.post(this.API_URL + RANKING_PATH, data, config)
     console.log(response.status)
