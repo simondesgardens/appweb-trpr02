@@ -17,10 +17,15 @@ function putScoresInOrder(scores: any) {
     scores.value = scores.sort((a: any, b: any) => b.score - a.score);
 }
 
+async function refreshScores() {
+    scores.value = await databaseService.getRanking();
+    putScoresInOrder(scores.value);
+}
+
 </script>
 
 <template>
-    <ul class="list-group list-group-flush">
+    <ul @load="refreshScores" class="list-group list-group-flush">
         <li class="list-group-item title text-center fw-bold">Pointage</li>
         <li class="list-group-item" v-for="score in scores" :key="score.id">{{ score.name }} - {{ score.score }} CG</li>
     </ul>

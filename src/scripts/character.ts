@@ -1,4 +1,4 @@
-type Enemy = {
+type Character = {
     id: number,
     name: string,
     credit: number,

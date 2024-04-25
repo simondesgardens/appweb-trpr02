@@ -1,41 +1,34 @@
 <script setup lang="ts">
-import { useRouter, onBeforeRouteLeave } from 'vue-router'
-import { ref, onMounted, watch } from 'vue'
-import { Modal } from 'bootstrap'
+import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
 import DatabaseService from "../scripts/databaseService.ts"
+import Popup from "../components/Popup.vue";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
-const props = defineProps({
-  trigger: Number,
-  playerName: String,
-  playerShip: String,
-  playButton: String
-})
-
 const router = useRouter()
 const databaseService = new DatabaseService();
-const emit = defineEmits(['startGame']);
-const modal = ref<Modal | null>(null)
+const playerValueIsInvalid = ref(false)
 
-let playerName = ref('default')
-let playerShip = ref('default')
+let playerName = ref('')
+let playerShip = ref('')
 
 const ships = ref([]);
 
 onMounted(async () => {
   ships.value = await databaseService.getShips();
-  console.log(ships.value);
 });
 
-watch(() => props.trigger, (newValue, oldValue) => {
-  if (newValue !== oldValue) {
-    modal.value?.show()
+function playGame() {
+  if (playerName.value == '' || playerShip.value == '') {
+    playerValueIsInvalid.value = true
+  } else {
+   router.push({ name: 'Mission', params: { name: playerName.value, player: playerName.value, ship: playerShip.value }});
   }
-})
+}
 
-const confirm = () => {
-  emit('startGame')
+async function closeWinPopup() {
+  playerValueIsInvalid.value = false
 }
 
 </script>
@@ -48,15 +41,15 @@ const confirm = () => {
       <fieldset>
         <div class="mb-3">
           <label for="textInput" class="form-label">Votre nom:</label>
-          <input type="text" id="textInput" class="form-control" v-model="playerName" required>
+          <input type="text" id="textInput" class="form-control" v-model="playerName">
         </div>
         <div class="mb-3">
           <label for="select" class="form-label">Votre vaisseau:</label>
-          <select id="select" class="form-select" v-model="playerShip" required>
+          <select id="select" class="form-select" v-model="playerShip">
             <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
-        <router-link :to="{ name: 'Mission', params: { name: playerName, ship: playerShip } }" name="play" tag="button" class="btn btn-primary w-100" @click="confirm">Débuter la partie</router-link>
+        <button type="button" class="btn btn-primary w-100" @click="playGame">Débuter la partie</button>
       </fieldset>
     </form>
   </div>
