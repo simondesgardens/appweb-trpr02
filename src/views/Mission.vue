@@ -99,9 +99,9 @@ function fight() {
 
 function finish() {
     currentMission.value++
-    chooseRandomEnemy()
 
-    verifyFightState()
+    chooseRandomEnemy()
+    verifyMissionState()
 }
 
 function finishAndRepair() {
@@ -128,7 +128,7 @@ function finishAndRepair() {
 
     currentMission.value++
 
-    verifyFightState()
+    verifyMissionState()
 }
 
 function verifyFightState() {
@@ -141,8 +141,6 @@ function verifyFightState() {
         if (player.value.experience <= enemy.value.experience && player.value.experience < 5) {
             player.value.experience++
         }
-
-        chooseRandomEnemy()
     }
 
     if (playerLife.value <= 0) {
@@ -161,18 +159,20 @@ function verifyMissionState() {
 
 function closeEnemyPopup() {
     enemyDied.value = false
+    chooseRandomEnemy()
 }
 
 function closePlayerPopup() {
     playerDied.value = false
     player.value.credit -= 100
+    databaseService.postScore(player.value.name, player.value.credit)
     router.push('/score')
 }
 
 function closeWinPopup() {
     playerWon.value = false
     databaseService.postScore(player.value.name, player.value.credit)
-    router.push('/score')
+    router.replace('/score')
 }
 
 function closeCreditPopup() {
