@@ -53,6 +53,13 @@ async function closeWinPopup() {
       </fieldset>
     </form>
   </div>
+
+  <Popup v-if="playerValueIsInvalid" :button-message="'Accepter'" @close-popup="closeWinPopup">
+    <h2>Manque de renseignement !</h2>
+            <p>
+                Veuillez entrer votre nom et choisir un vaisseau.
+            </p>
+  </Popup>
 </template>
 
 <style scoped>
