@@ -12,7 +12,7 @@ import "bootstrap"
       </button>
   
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <RouterLink class="nav-link margin-left" id="menu" to="/">#Titre du jeu#</RouterLink>
+        <RouterLink class="nav-link margin-left" id="menu" to="/">Moon Wars</RouterLink>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <RouterLink class="nav-link" id="menu" to="/">Accueil</RouterLink>
