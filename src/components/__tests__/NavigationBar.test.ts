@@ -1,8 +1,8 @@
 import { describe, afterEach, expect, vi, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from '../src/router/routes'
-import NavigationBar from '../src/components/NavigationBar.vue'
+import routes from '../../router/routes'
+import NavigationBar from '../NavigationBar.vue'
 
 const router = createRouter({
   history: createWebHistory(),
