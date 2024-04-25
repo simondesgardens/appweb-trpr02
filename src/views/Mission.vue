@@ -12,8 +12,6 @@ import Popup from "../components/Popup.vue";
 const databaseService = new DatabaseService();
 const router = useRouter()
 
-const enemies = ref<Character[]>([])
-const choosenEnemy = ref<number>()
 const enemy = ref<Character>({
     id: 0,
     credit: 0,
@@ -25,7 +23,6 @@ const enemy = ref<Character>({
         vitality: 0
     }
 })
-const enemyLife = ref<number>(0)
 const player = ref<Character>({
     id: 0,
     credit: 0,
@@ -37,13 +34,18 @@ const player = ref<Character>({
         vitality: 100
     }
 })
-const playerLife = ref<number>(player.value.ship.vitality)
 
-const currentMission = ref(1)
+const enemies = ref<Character[]>([])
 
+const choosenEnemy = ref<number>()
+const enemyLife = ref<number>(0)
 const enemyDied = ref<boolean>(false)
+
+const playerLife = ref<number>(player.value.ship.vitality)
 const playerDied = ref<boolean>(false)
 const playerWon = ref<boolean>(false)
+
+const currentMission = ref(1)
 const hasEnounghCredit = ref<boolean>(true)
 
 onBeforeMount(async () => {
@@ -103,8 +105,6 @@ function finish() {
 }
 
 function finishAndRepair() {
-    currentMission.value++
-
     let price : number = 0
 
     if (playerLife.value <= 25) {
@@ -125,6 +125,8 @@ function finishAndRepair() {
     }
 
     chooseRandomEnemy()
+
+    currentMission.value++
 
     verifyFightState()
 }
@@ -163,13 +165,14 @@ function closeEnemyPopup() {
 
 function closePlayerPopup() {
     playerDied.value = false
-    //aller vers score
-    //router.push(router.routes[2])
+    player.value.credit -= 100
+    router.push('/score')
 }
 
 function closeWinPopup() {
     playerWon.value = false
-    //aller vers score
+    databaseService.postScore(player.value.name, player.value.credit)
+    router.push('/score')
 }
 
 function closeCreditPopup() {
