@@ -75,7 +75,7 @@ function closeError() {
             </p>
   </Popup>
   <div v-if="databaseErrorOccurred" class="alert alert-danger position-fixed bottom-0 end-50" role="alert">
-    <button type="button" class="btn-close" aria-label="Close" @click="closeError"></button>
+    <button type="button" class="btn-close" name="buttonCloseError" aria-label="Close" @click="closeError"></button>
     Une erreur s'est produite lors de la connexion à la base de données. Veuillez réessayer plus tard.
   </div>
 </template>
