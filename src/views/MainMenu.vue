@@ -16,12 +16,17 @@ interface Ship {
 }
 const playerName = ref('')
 const playerShip = ref('')
+const databaseErrorOccurred = ref(false);
 
 
 const ships = ref<Ship[]>([]);
 
 onMounted(async () => {
-  ships.value = await databaseService.getShips();
+  try {
+    ships.value = await databaseService.getShips();
+  } catch (error) {
+    databaseErrorOccurred.value = true;
+  }
 });
 
 function playGame(playerName: string, playerShip: string) {
@@ -34,6 +39,10 @@ function playGame(playerName: string, playerShip: string) {
 
 async function closeWinPopup() {
   playerValueIsInvalid.value = false
+}
+
+function closeError() {
+  databaseErrorOccurred.value = false;
 }
 
 </script>
@@ -65,6 +74,10 @@ async function closeWinPopup() {
                 Veuillez entrer votre nom et choisir un vaisseau.
             </p>
   </Popup>
+  <div v-if="databaseErrorOccurred" class="alert alert-danger position-fixed bottom-0 end-50" role="alert">
+    <button type="button" class="btn-close" aria-label="Close" @click="closeError"></button>
+    Une erreur s'est produite lors de la connexion à la base de données. Veuillez réessayer plus tard.
+  </div>
 </template>
 
 <style scoped>
