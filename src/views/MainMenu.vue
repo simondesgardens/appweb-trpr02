@@ -10,20 +10,25 @@ const router = useRouter()
 const databaseService = new DatabaseService();
 const playerValueIsInvalid = ref(false)
 
-let playerName = ref('')
-let playerShip = ref('')
+interface Ship {
+  id: number
+  name: string
+}
+const playerName = ref('')
+const playerShip = ref('')
 
-const ships = ref([]);
+
+const ships = ref<Ship[]>([]);
 
 onMounted(async () => {
   ships.value = await databaseService.getShips();
 });
 
-function playGame() {
-  if (playerName.value == '' || playerShip.value == '') {
+function playGame(playerName: string, playerShip: string) {
+  if (playerName == '' || playerShip == '') {
     playerValueIsInvalid.value = true
   } else {
-   router.push({ name: 'Mission', params: { name: playerName.value, player: playerName.value, ship: playerShip.value }});
+   router.push({ name: 'Mission', params: { name: playerName, player: playerName, ship: playerShip }});
   }
 }
 
@@ -49,7 +54,7 @@ async function closeWinPopup() {
             <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
           </select>
         </div>
-        <button type="button" class="btn btn-primary w-100" @click="playGame">Débuter la partie</button>
+        <button type="button" class="btn btn-primary w-100" @click="playGame(playerName, playerShip)">Débuter la partie</button>
       </fieldset>
     </form>
   </div>
