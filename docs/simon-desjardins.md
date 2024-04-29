@@ -56,3 +56,42 @@ Dans le Score.vue:
 ```js
 const scores = ref([]);
 ```
+## Semaine 3
+
+### Test unitaires de NavigationBar.vue
+
+Factorisation du code répétitif dans les tests.
+```ts
+const mountNavigationBar = async () => {
+  router.push('/')
+  await router.isReady()
+  return mount(NavigationBar, {
+    global: {
+      plugins: [router]
+    }
+  })
+}
+```
+au lieu de le mettre à chaque test.
+
+### MainMenu.vue
+
+Gestion des valeurs par défaut : "Entrez votre nom" pour le champ du nom et "Sélectionnez un vaisseau" pour le champ du vaisseau.
+```ts
+const playerName = ref('')
+const playerShip = ref('')
+```
+
+### Score.vue
+
+Typage de données: utilisez un type pour la fonction putScoresInOrder. (Par exemple "Scoree[]" au lieu de "any")
+
+```ts
+function putScoresInOrder(scores: any) {
+    scores.value = scores.sort((a: any, b: any) => b.score - a.score);
+}
+```
+
+### Commentaire
+
+Le code est généralement bien structuré !
