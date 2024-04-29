@@ -9,7 +9,7 @@ Revue de code de Simon Desjardins de la semaine 1 pour le TP02 pour le cours d'a
 #### Répétitions du composant **_Player_** dans **Mission.vue**
 Répétitions du composant **_Player_**. On pourrais temporairement copier le contenu du composant **_Player_** et l'utiliser dans le composant **_Ennemy_** pour retirer cette duplication.
 
-```js{4}
+```js{0}
 <template>
     <div class="container">
         <div class="row justify-content-around align-items-stretch p-3">
@@ -26,7 +26,7 @@ Répétitions du composant **_Player_**. On pourrais temporairement copier le co
 #### Utiliser de variables dans Player.vue
 Pour afficher le nom du joueur, du vaisseau et le niveau du joueur, il faudrait directement utiliser des variables dans le composant Player.
 
-```js{4}
+```js{0}
 <template>
     <div id="playerInfos">
         <div class="container">

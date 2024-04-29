@@ -14,6 +14,9 @@ hero:
       text: Ilann Brodl Semaine 2
       link: /ilann-brodl-s2
     - theme: brand
+      text: Ilann Brodl Semaine 3
+      link: /ilann-brodl-s3
+    - theme: brand
       text: Simon Dejardins
       link: /simon-desjardins
 ---

@@ -7,7 +7,7 @@ Revue de code de Simon Desjardins de la semaine 2 pour le TP02 pour le cours d'a
 #### Différencier les composants **_Player_** et **_Ennemy_**
 Pour afficher le nom de l'ennemi et du vaisseau, il faudrait directement utiliser des variables dans le composant Ennemy.
 
-```js{4}
+```js{0}
 <template>
     <div class="container">
         <div class="row justify-content-around align-items-stretch p-3">
@@ -26,7 +26,7 @@ Pour afficher le nom de l'ennemi et du vaisseau, il faudrait directement utilise
 #### Manque de commentaires pour certaines fonctions
 Certaines fonctions auraint besoin de commentaires pour comprendre plus facilement leurs utilisations.
 
-```js{4}
+```js{0}
 onBeforeMount(async () => {
     enemies.value = await databaseService.getCharacters()
     chooseRandomEnemy()

@@ -7,16 +7,17 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Home', link: '/' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Revue de code',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Ilann Brodl Semaine 1', link: '/ilann-brodl' },
+          { text: 'Ilann Brodl Semaine 2', link: '/ilann-brodl-s2' },
+          { text: 'Ilann Brodl Semaine 3', link: '/ilann-brodl-s3' },
+          { text: 'Simon Dejardins', link: '/simon-desjardins' }
         ]
       }
     ],
