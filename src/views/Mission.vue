@@ -44,13 +44,21 @@ const enemyDied = ref<boolean>(false)
 const playerLife = ref<number>(player.value.ship.vitality)
 const playerDied = ref<boolean>(false)
 const playerWon = ref<boolean>(false)
+const dbError = ref<boolean>(false)
 
 const currentMission = ref(1)
 const hasEnounghCredit = ref<boolean>(true)
 
+// Pour les tests de Mission.vue
+defineExpose({enemy, enemyLife, enemies, currentMission})
+
 onBeforeMount(async () => {
-    enemies.value = await databaseService.getCharacters()
-    chooseRandomEnemy()
+    try {
+        enemies.value = await databaseService.getCharacters()
+        chooseRandomEnemy()
+    } catch (error) {
+        dbError.value = true
+    }
 });
 
 function chooseRandomEnemy() {
@@ -176,7 +184,12 @@ async function closeWinPopup() {
 }
 
 function closeCreditPopup() {
-    hasEnounghCredit.value = false
+    hasEnounghCredit.value = true
+}
+
+function closeErrorPopup() {
+    dbError.value = false
+    router.push('/')
 }
 
 </script>
@@ -214,6 +227,12 @@ function closeCreditPopup() {
             <h2>Fonds insufisants</h2>
             <p>
                 Vous n'avez pas assez de crédit pour réparer votre vaisseau...
+            </p>
+        </Popup>
+        <Popup v-if="dbError" :button-message="'Fermer'" @close-popup="closeErrorPopup">
+            <h2>Erreur</h2>
+            <p>
+                Il y a eu une erreur lors du chargement des ennemies. Retour au menu principal.
             </p>
         </Popup>
     </div>

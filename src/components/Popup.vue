@@ -17,7 +17,7 @@ const emit = defineEmits<{
     <div class="popup">
         <div class="popup-inner">
             <slot />
-            <button @click="() => {emit('closePopup')}" class="popup-close">
+            <button id="btnClose" @click="() => {emit('closePopup')}" class="popup-close">
                 {{ props.buttonMessage }}
             </button>
         </div>
