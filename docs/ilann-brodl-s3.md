@@ -100,5 +100,8 @@ Certains tests auront besoin de commentaires pour comprendre plus facilement leu
 ### Autres
 
 ::: tip Point positif pour le reste du TP
-- La récupération des informations du joueur fonctionne correctement sans modifier les valeurs envoyées par la page principale.
+- Pour la totalité des fichier il y a presque aucun code non utilisé.
+- Le code à une très bonne couverture pour les erreurs.
+- Les variables et fonctions sont bien nommées et correspondantes à la description de l'usage.
+- Le code est bien ordonné et facilement lisible. 
 :::
